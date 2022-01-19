@@ -1,0 +1,45 @@
+* {
+    margin: none;
+    padding: none;
+}
+
+/* 1 rem = 10 px */
+html {
+    font-size: 62.5%;
+}
+
+p {
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+.container {
+    width: 45rem;
+    height: 60rem;
+    background-color: grey;
+    border-radius: 2rem;
+}
+
+.row {
+    height: 10rem;
+    background-color: khaki;
+    border: 1px dotted rgb(221, 180, 219);
+    /* padding: 1rem; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* box-sizing: border-box; */
+
+}
+
+.calcbutton {
+    width: 25%;
+    height: 95%;
+    background-color: rgb(155, 185, 181);
+    margin: .2rem;
+    /* box-sizing: border-box; */
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+}
