@@ -4,6 +4,7 @@
 }
 
 /* 1 rem = 10 px */
+
 html {
     font-size: 62.5%;
 }
@@ -11,32 +12,79 @@ html {
 p {
     font-size: 3rem;
     text-align: center;
+    font-weight: bold;
 }
 
+/* /////////////////// main calculator container ////////////////////// */
 
 .container {
     width: 45rem;
     height: 60rem;
     background-color: grey;
     border-radius: 2rem;
+    padding: 3rem 3rem 4rem 3rem;
 }
+
+/*  //////////////////// row styling ///////////////////// */
 
 .row {
     height: 10rem;
-    background-color: khaki;
-    border: 1px dotted rgb(221, 180, 219);
-    /* padding: 1rem; */
+    background-color: black;
+    /* border: 1px dotted rgb(226, 23, 23); */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* box-sizing: border-box; */
+    padding: 0 1rem;
 
 }
+.row:first-child {
+    border-radius: 1em 1em 0 0;
+}
+.row:last-child {
+    border-radius: 0 0 1em 1em;
+    padding-bottom: .8rem;
+}
+
+/* /////////////////// numbers display ////////////////////// */
+
+#calcscreen {
+    display: flex;
+    background-color: rgb(231, 231, 231);
+    width: 100%;
+    margin: 1em 0;
+    border-radius: 1rem;
+}
+
+#screen-el {
+    /* margin-left: auto; */
+    padding: 1.5rem 0rem 0 0;
+    margin: 0 2rem 0 auto;
+    font-size: 5rem;
+  
+    
+}
+
+/*  //////////////////// clear and delete buttons ///////////////////// */
+
+.bigbutton {
+    width: 50%;
+    background-color: rgba(168, 0, 0, 0.897);
+    margin: .2rem;
+    border-radius: .4rem;
+    font-weight: 500;
+    
+}
+
+.bigbutton:first-child {
+    background-color: rgb(160, 160, 160);
+}
+
+/*  //////////////////// general calculator buttons ///////////////////// */
 
 .calcbutton {
     width: 25%;
     height: 95%;
-    background-color: rgb(155, 185, 181);
+    background-color: rgb(208, 214, 213);
     margin: .2rem;
     /* box-sizing: border-box; */
     border-radius: 1rem;
