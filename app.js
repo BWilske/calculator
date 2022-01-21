@@ -3,6 +3,8 @@
 let activeNum= []
 let activeNumIncrementer = 0
 let transferString = ""
+let operationVariable = ""
+let firstNum = ""
 
 //when the odin project swings to objects, or another way to make this succinct come back and fix these
 
@@ -37,24 +39,36 @@ sevenEl.addEventListener("click", () => appendToActive(7))
 eightEl.addEventListener("click", () => appendToActive(8))
 nineEl.addEventListener("click", () => appendToActive(9))
 zeroEl.addEventListener("click", () => appendToActive(0))
-// addEl.addEventListener("click", setOperation(add) )
-// subEl.addEventListener("click", setOperation(sub) )
-// multEl.addEventListener("click", setOperation(mult) )
-// divEl.addEventListener("click", setOperation(div) )
+addEl.addEventListener("click", () => setOperation("+") )
+subEl.addEventListener("click", () => setOperation("-") )
+multEl.addEventListener("click", () => setOperation("*") )
+divEl.addEventListener("click", () => setOperation("/") )
 decEl.addEventListener("click", () => appendToActive("."))
 equalEl.addEventListener("click", () => runCalculations())
 // clearEl
 // deleteEl
 
 function appendToActive(input) {
-    if (!transferString){
+    if (activeNum.length < 11){
         activeNumIncrementer = activeNum.push(input)
         activeNum.forEach(element => transferString += element)
         screenEl.textContent = transferString
         transferString = ""
         console.log(activeNumIncrementer, activeNum, transferString)
     }
-    else runCalculations();
+    // else runCalculations();
+}
+
+
+// technically could use type coercion here instead of number(), feels wrong for some reason
+function setOperation(operator) {
+    if (!operationVariable)
+    operationVariable = operator
+    firstNum = Number(activeNum.join(""))
+    screenEl.textContent = operator
+    transferString = ""
+    activeNum = []
+    console.log(firstNum, "activenum")
 }
 
 
