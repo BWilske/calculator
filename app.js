@@ -5,6 +5,7 @@ let activeNumIncrementer = 0
 let transferString = ""
 let operationVariable = ""
 let firstNum = ""
+let secondNum = ""
 
 //when the odin project swings to objects, or another way to make this succinct come back and fix these
 
@@ -44,7 +45,7 @@ subEl.addEventListener("click", () => setOperation("-") )
 multEl.addEventListener("click", () => setOperation("*") )
 divEl.addEventListener("click", () => setOperation("/") )
 decEl.addEventListener("click", () => appendToActive("."))
-equalEl.addEventListener("click", () => runCalculations())
+equalEl.addEventListener("click", () => runCalculationSequence())
 // clearEl
 // deleteEl
 
@@ -54,21 +55,38 @@ function appendToActive(input) {
         activeNum.forEach(element => transferString += element)
         screenEl.textContent = transferString
         transferString = ""
-        console.log(activeNumIncrementer, activeNum, transferString)
+        // console.log(activeNumIncrementer, activeNum, transferString)
     }
-    // else runCalculations();
 }
 
 
-// technically could use type coercion here instead of number(), feels wrong for some reason
+// technically could use type coercion here instead of number(), feels dirty
 function setOperation(operator) {
-    if (!operationVariable)
-    operationVariable = operator
-    firstNum = Number(activeNum.join(""))
-    screenEl.textContent = operator
-    transferString = ""
+    if (!operationVariable){
+        operationVariable = operator
+        firstNum = Number(activeNum.join(""))
+        screenEl.textContent = operator
+        transferString = ""
+        activeNum = []
+        // console.log(firstNum, "firstnum")
+    }
+
+    else runCalculationSequence();
+}
+
+function runCalculationSequence() {
+    secondNum = Number(activeNum.join(""))
+    let total = operate(operationVariable, firstNum, secondNum)
+    console.log(total)
+    screenEl.textContent = total
+    firstNum = total
+    secondNum = ""
     activeNum = []
-    console.log(firstNum, "activenum")
+
+
+
+    // console.log("online")
+
 }
 
 
@@ -100,8 +118,8 @@ let operation = {
 }
 
 function operate(operator, num1, num2) {
-    if (operator == "+") add(num1, num2);
-    else if (operator == "-") sub(num1, num2);
-    else if (operator == "*") mult(num1, num2);
-    else if (operator == "/") div(num1, num2);
+    if (operator === "+") return operation.add(num1, num2);
+    else if (operator === "-") return operation.sub(num1, num2);
+    else if (operator === "*") return operation.mult(num1, num2);
+    else if (operator === "/") return operation.div(num1, num2);
 }
