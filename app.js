@@ -62,7 +62,7 @@ function appendToActive(input) {
 
 // technically could use type coercion here instead of number(), feels dirty
 function setOperation(operator) {
-    if (!operationVariable){
+    if (!secondNum){
         operationVariable = operator
         firstNum = Number(activeNum.join(""))
         screenEl.textContent = operator
@@ -82,6 +82,7 @@ function runCalculationSequence() {
     firstNum = total
     secondNum = ""
     activeNum = []
+    operationVariable=""
 
 
 
