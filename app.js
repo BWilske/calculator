@@ -1,7 +1,6 @@
 
 
 let activeNum= []
-let activeNumIncrementer = 0
 let transferString = ""
 let operationVariable = ""
 let firstNum = ""
@@ -46,21 +45,33 @@ multEl.addEventListener("click", () => setOperation("*") )
 divEl.addEventListener("click", () => setOperation("/") )
 decEl.addEventListener("click", () => appendToActive("."))
 equalEl.addEventListener("click", () => runCalculationSequence())
-// clearEl
+clearEl.addEventListener("click", () => clear())
 // deleteEl
 
 function appendToActive(input) {
     if (activeNum.length < 11){
-        activeNumIncrementer = activeNum.push(input)
+        activeNum.push(input)
         activeNum.forEach(element => transferString += element)
         screenEl.textContent = transferString
         transferString = ""
-        // console.log(activeNumIncrementer, activeNum, transferString)
+        // console.log(activeNum, transferString)
+    }
+}
+
+function setOperation(operator) {
+    if (!operationVariable){
+        operationVariable = operator
+        updateScreen()
+    }
+    else {
+    runCalculationSequence()
+    operationVariable = operator
     }
 }
 
 
 // technically could use type coercion here instead of number(), feels dirty
+<<<<<<< HEAD
 function setOperation(operator) {
     if (!secondNum){
         operationVariable = operator
@@ -70,12 +81,19 @@ function setOperation(operator) {
         activeNum = []
         // console.log(firstNum, "firstnum")
     }
+=======
+function updateScreen() {
+    if (!firstNum) firstNum = Number(activeNum.join(""));
+>>>>>>> rework
 
-    else runCalculationSequence();
+    screenEl.textContent = `${firstNum} ${operationVariable}`
+    transferString = ""
+    activeNum = []
 }
 
 function runCalculationSequence() {
     secondNum = Number(activeNum.join(""))
+<<<<<<< HEAD
     let total = operate(operationVariable, firstNum, secondNum)
     console.log(total)
     screenEl.textContent = total
@@ -88,13 +106,27 @@ function runCalculationSequence() {
 
     // console.log("online")
 
+=======
+    if (firstNum && secondNum) {
+        let total = operate(operationVariable, firstNum, secondNum)
+        if (total % 1 != 0) total = total.toFixed(2);
+        screenEl.textContent = total
+        firstNum = total
+        secondNum = ""
+        activeNum = []
+        operationVariable = ""
+    }
+>>>>>>> rework
 }
 
-
-
-
-
-
+function clear() {
+    activeNum= []
+    transferString = ""
+    operationVariable = ""
+    firstNum = ""
+    secondNum = ""
+    screenEl.textContent = 0
+}
 
 let operation = {
     add: function(num1, num2) {
