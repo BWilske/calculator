@@ -45,7 +45,7 @@ multEl.addEventListener("click", () => setOperation("*") )
 divEl.addEventListener("click", () => setOperation("/") )
 decEl.addEventListener("click", () => appendToActive("."))
 equalEl.addEventListener("click", () => runCalculationSequence())
-// clearEl
+clearEl.addEventListener("click", () => clear())
 // deleteEl
 
 function appendToActive(input) {
@@ -81,27 +81,25 @@ function updateScreen() {
 
 function runCalculationSequence() {
     secondNum = Number(activeNum.join(""))
-    if (secondNum) {
+    if (firstNum && secondNum) {
         let total = operate(operationVariable, firstNum, secondNum)
-        console.log(total)
+        if (total % 1 != 0) total = total.toFixed(2);
         screenEl.textContent = total
         firstNum = total
         secondNum = ""
         activeNum = []
         operationVariable = ""
     }
-
-
-
-    // console.log("online")
-
 }
 
-
-
-
-
-
+function clear() {
+    activeNum= []
+    transferString = ""
+    operationVariable = ""
+    firstNum = ""
+    secondNum = ""
+    screenEl.textContent = 0
+}
 
 let operation = {
     add: function(num1, num2) {
