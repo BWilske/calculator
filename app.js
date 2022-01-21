@@ -1,7 +1,6 @@
 
 
 let activeNum= []
-let activeNumIncrementer = 0
 let transferString = ""
 let operationVariable = ""
 let firstNum = ""
@@ -51,37 +50,46 @@ equalEl.addEventListener("click", () => runCalculationSequence())
 
 function appendToActive(input) {
     if (activeNum.length < 11){
-        activeNumIncrementer = activeNum.push(input)
+        activeNum.push(input)
         activeNum.forEach(element => transferString += element)
         screenEl.textContent = transferString
         transferString = ""
-        // console.log(activeNumIncrementer, activeNum, transferString)
+        // console.log(activeNum, transferString)
+    }
+}
+
+function setOperation(operator) {
+    if (!operationVariable){
+        operationVariable = operator
+        updateScreen()
+    }
+    else {
+    runCalculationSequence()
+    operationVariable = operator
     }
 }
 
 
 // technically could use type coercion here instead of number(), feels dirty
-function setOperation(operator) {
-    if (!operationVariable){
-        operationVariable = operator
-        firstNum = Number(activeNum.join(""))
-        screenEl.textContent = operator
-        transferString = ""
-        activeNum = []
-        // console.log(firstNum, "firstnum")
-    }
+function updateScreen() {
+    if (!firstNum) firstNum = Number(activeNum.join(""));
 
-    else runCalculationSequence();
+    screenEl.textContent = `${firstNum} ${operationVariable}`
+    transferString = ""
+    activeNum = []
 }
 
 function runCalculationSequence() {
     secondNum = Number(activeNum.join(""))
-    let total = operate(operationVariable, firstNum, secondNum)
-    console.log(total)
-    screenEl.textContent = total
-    firstNum = total
-    secondNum = ""
-    activeNum = []
+    if (secondNum) {
+        let total = operate(operationVariable, firstNum, secondNum)
+        console.log(total)
+        screenEl.textContent = total
+        firstNum = total
+        secondNum = ""
+        activeNum = []
+        operationVariable = ""
+    }
 
 
 
