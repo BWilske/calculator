@@ -1,5 +1,3 @@
-
-
 let activeNum= []
 let transferString = ""
 let operationVariable = ""
